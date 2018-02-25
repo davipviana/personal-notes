@@ -33,13 +33,12 @@ public class NavigationDrawerFragment extends Fragment {
         if (savedInstanceState != null) {
             fromSavedInstanceState = true;
         }
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(R.layout.fragment_navigation_drawer, container, false);
+        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     }
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
@@ -49,20 +48,39 @@ public class NavigationDrawerFragment extends Fragment {
                 toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
+                if (slideOffset < 0.6) {
+                    toolbar.setAlpha(1 - slideOffset / 2);
+                }
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
+                if (!userLearnedDrawer) {
+                    userLearnedDrawer = true;
+                    AppSharedPreferences.setUserLearned(getActivity(),
+                            AppConstant.KEY_USER_LEARNED_DRAWER, AppConstant.TRUE);
+                }
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
+                AppSharedPreferences.setUserLearned(getActivity(),
+                        AppConstant.KEY_USER_LEARNED_DRAWER, AppConstant.TRUE);
             }
         };
 
+        if (!userLearnedDrawer && !fromSavedInstanceState) {
+            this.drawerLayout.openDrawer(containerView);
+        }
+        this.drawerLayout.setDrawerListener(drawerToggle);
+        this.drawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                drawerToggle.syncState();
+            }
+        });
     }
-}
+    public void closeDrawer() {
+        this.drawerLayout.closeDrawers();
+    }
 }
