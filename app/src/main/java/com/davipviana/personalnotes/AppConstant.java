@@ -15,7 +15,7 @@ public class AppConstant {
     public static final String LIST_NOTES = "LIST_NOTES";
     public static final String DATE_PICKER = "DATE_PICKER";
     public static final String NO_IMAGE = "no_image";
-    public static final String No_TIME = "No Time";
+    public static final String NO_TIME = "No Time";
     public static final String NO_ARCHIVES = "NO ARCHIVES";
     public static final String NO_TRASH = "TRASH IS EMPTY";
     public static final String EMPTY = "EMPTY";
