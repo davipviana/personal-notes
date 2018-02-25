@@ -52,7 +52,7 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.NoteHo
     public void onBindViewHolder(NoteHolder holder, int position) {
         holder._id.setText(data.get(position).getId() + "");
         holder.title.setText(data.get(position).getTitle());
-        if(data.get(position) .getDateTime().contains(AppConstant.No_TIME)){
+        if(data.get(position) .getDateTime().contains(AppConstant.NO_TIME)){
             NoteCustomList noteCustomList = new NoteCustomList(context);
             noteCustomList.setUpForHomeAdapter(data.get(position).getDescription());
             holder.listLayout.removeAllViews();
