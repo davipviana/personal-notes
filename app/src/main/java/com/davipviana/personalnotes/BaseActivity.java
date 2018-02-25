@@ -59,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         makeNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BaseActivity.this, NoteDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NoteDetailActivity.class);
                 intent.putExtra(AppConstant.NOTE_OR_REMINDER, title);
                 startActivity(intent);
             }
