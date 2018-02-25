@@ -22,8 +22,9 @@
         </activity>
         <activity
             android:name=".NotesActivity"
-            android:label="@string/title_activity_notes"
-            android:theme="@style/AppTheme"></activity>
+            android:label="@string/title_activity_notes" />
+        <receiver android:name=".AlarmReceiver"
+            android:process=":remote"/>
     </application>
 
 </manifest>
