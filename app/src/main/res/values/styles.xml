@@ -1,8 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
 
     <style name="Theme.Base" parent="AppTheme">
         <item name="colorPrimary">@color/notesPrimaryBackgroundColor</item>
@@ -13,7 +12,7 @@
         <item name="android:windowBackground">@color/notesBackgroundColor</item>
     </style>
 
-    <style name="Theme.PersonalNotes" parent="Theme.Base"/>
+    <style name="Theme.PersonalNotes" parent="Theme.Base" />
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">@color/notesPrimaryTextColor</item>
@@ -27,5 +26,9 @@
         <item name="android:textColor">@color/notesPrimaryTextColor</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

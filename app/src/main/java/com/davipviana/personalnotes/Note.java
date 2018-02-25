@@ -69,6 +69,11 @@ public class Note {
         setImagePath(path);
         this.bitmap = BitmapFactory.decodeFile(path);
     }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
     public Bitmap getBitmap() {
         return bitmap;
     }

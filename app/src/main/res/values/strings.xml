@@ -40,5 +40,6 @@
     <string name="new_directory">Create</string>
     <string name="folder_name">Folder Name</string>
     <string name="is_default">Currently selected default</string>
+    <string name="title_activity_notes">NotesActivity</string>
 
 </resources>
