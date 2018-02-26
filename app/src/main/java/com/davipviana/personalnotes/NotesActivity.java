@@ -53,7 +53,7 @@ public class NotesActivity extends BaseActivity implements
     private NotesAdapter notesAdapter;
     private ContentResolver contentResolver;
     private static Boolean isInAuth;
-    private static Bitmap sendingImage = null;
+    public static Bitmap sendingImage = null;
     private boolean isImageNotFound = false;
     private DropboxAPI<AndroidAuthSession> dropboxAPI;
 
