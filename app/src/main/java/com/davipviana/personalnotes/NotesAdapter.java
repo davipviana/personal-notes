@@ -62,7 +62,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
         if (notes.get(position).getBitmap() != null) {
             holder.mImage.setImageBitmap(notes.get(position).getBitmap());
             holder.mImage.setVisibility(View.VISIBLE);
-        } else if (notes.get(position).getImagePath().equals(AppConstant.NO_IMAGE)) {
+        } else if (notes.get(position).getImagePath() == null || notes.get(position).getImagePath().equals(AppConstant.NO_IMAGE)) {
             // No image, so hide.
             holder.mImage.setVisibility(View.GONE);
         } else {

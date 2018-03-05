@@ -62,6 +62,7 @@ public class NotesLoader extends AsyncTaskLoader<List<Note>> {
                                     note.setBitmap(imagePath);
                                 } else {
                                     // Is a Google Drive or Dropbox Image
+                                    note.setImagePath(imagePath);
                                 }
                             } else {
                                 note.setImagePath(AppConstant.NO_IMAGE);
@@ -71,13 +72,14 @@ public class NotesLoader extends AsyncTaskLoader<List<Note>> {
                         }
 
                     } else if(this.type == BaseActivity.REMINDERS) {
-                        if(time.equals(AppConstant.NO_TIME)) {
+                        if(!time.equals(AppConstant.NO_TIME)) {
                             Note note = new Note(title, description, date, time, _id, imageSelection, type);
                             if(!imagePath.equals(AppConstant.NO_IMAGE)) {
                                 if(imageSelection == AppConstant.DEVICE_SELECTION) {
                                     note.setBitmap(imagePath);
                                 } else {
                                     // Is a Google Drive or Dropbox Image
+                                    note.setImagePath(imagePath);
                                 }
                             } else {
                                 note.setImagePath(AppConstant.NO_IMAGE);

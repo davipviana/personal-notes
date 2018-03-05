@@ -40,16 +40,20 @@ public class GoogleDriveSelectionActivity extends BaseGoogleDriveActivity {
                 if(data != null && resultCode == RESULT_OK) {
                     driveId = (DriveId) data.getParcelableExtra(
                             OpenFileActivityBuilder.EXTRA_RESPONSE_DRIVE_ID);
-                    AppSharedPreferences.storeGoogleDriveResourceId(getApplicationContext(), driveId.getResourceId());
-                    BaseActivity.actAsNote();
-                    startActivity(new Intent(GoogleDriveSelectionActivity.this, GoogleDriveDirectoryNameGetterActivity.class));
-                    finish();
-                    return;
-                } else {
-                    startActivity(new Intent(GoogleDriveSelectionActivity.this, GoogleDriveDirectoryNameGetterActivity.class));
-                    finish();
-                    return;
+                    if(driveId != null) {
+                        AppSharedPreferences.storeGoogleDriveResourceId(getApplicationContext(), driveId.getResourceId());
+                        BaseActivity.actAsNote();
+                        startActivity(new Intent(GoogleDriveSelectionActivity.this, GoogleDriveDirectoryNameGetterActivity.class));
+                        finish();
+                        return;
+                    } else {
+                        startActivity(new Intent(GoogleDriveSelectionActivity.this, GoogleDriveSelectionActivity.class));
+                        finish();
+                        return;
+                    }
                 }
+                break;
+
             default:
                 super.onActivityResult(requestCode, resultCode, data);
                 break;

@@ -3,17 +3,17 @@ package com.davipviana.personalnotes;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v4.app.LoaderManager;
-import android.content.ContentResolver;
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +23,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -60,7 +59,7 @@ public class NotesActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
+        setContentView(R.layout.activity_all_layout);
         activateToolbar();
         setUpForDropbox();
         setUpNavigationDrawer();
@@ -69,7 +68,7 @@ public class NotesActivity extends BaseActivity implements
     }
 
     private void setUpForDropbox() {
-        AndroidAuthSession session = DropboxActions.buildsession(getApplicationContext());
+        AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
         dropboxAPI = new DropboxAPI<AndroidAuthSession>(session);
     }
 
@@ -95,7 +94,7 @@ public class NotesActivity extends BaseActivity implements
             public void onItemLongClick(View view, final int position) {
                 PopupMenu popupMenu = new PopupMenu(NotesActivity.this, view);
                 MenuInflater inflater = popupMenu.getMenuInflater();
-                inflater.inflate(R.menu_actions_notes, popupMenu.getMenu());
+                inflater.inflate(R.menu.action_notes, popupMenu.getMenu());
                 popupMenu.show();
                 final View v = view;
                 final int pos = position;
@@ -166,6 +165,8 @@ public class NotesActivity extends BaseActivity implements
                         } while(isImageNotFound);
                     }
                 });
+                thread[threadCounter].start();
+                threadCounter++;
 
             } else if(AppConstant.DROP_BOX_SELECTION == aNote.getStorageSelection()) {
                 thread[threadCounter] =  new Thread(new Runnable() {
@@ -383,12 +384,13 @@ public class NotesActivity extends BaseActivity implements
         String listDescription = "";
         if(isList == View.VISIBLE) {
             NoteCustomList noteCustomList = (NoteCustomList) linearLayout.getChildAt(0);
-            for(int i=0; i<noteCustomList.getChildCount(); i++) {
-                LinearLayout first = (LinearLayout) noteCustomList.getChildAt(i);
-                CheckBox bx = (CheckBox) first.getChildAt(0);
-                TextView cx = (TextView) first.getChildAt(1);
-                listDescription = description + cx.getText().toString() + bx.isChecked() + "%";
-            }
+            listDescription = noteCustomList.getLists();
+//            for(int i=0; i<noteCustomList.getChildCount(); i++) {
+//                LinearLayout first = (LinearLayout) noteCustomList.getChildAt(i);
+//                CheckBox bx = (CheckBox) first.getChildAt(0);
+//                TextView cx = (TextView) first.getChildAt(1);
+//                listDescription = description + cx.getText().toString() + bx.isChecked() + "%";
+//            }
             values.put(ArchivesContract.ArchivesColumns.ARCHIVES_TYPE, AppConstant.LIST);
         } else {
             listDescription = description.getText().toString();

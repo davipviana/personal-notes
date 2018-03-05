@@ -19,7 +19,7 @@ public class DropBoxActions {
         if(key == null || secret == null || key.length() == 0 || secret.length() == 0) {
             return;
         }
-        if(key.equals("oath2:")) {
+        if(key.equals("oauth2:")) {
             session.setOAuth2AccessToken(secret);
         } else {
             session.setAccessTokenPair(new AccessTokenPair(key, secret));
