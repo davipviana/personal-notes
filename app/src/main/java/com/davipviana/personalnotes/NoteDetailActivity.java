@@ -106,7 +106,7 @@ public class NoteDetailActivity extends BaseActivity
         if (getIntent().getStringExtra(AppConstant.ID) != null) {
             id = getIntent().getStringExtra(AppConstant.ID);
             isEditing = true;
-            if (getIntent().getStringExtra(AppConstant.LIST_NOTES) != null) {
+            if (getIntent().getStringExtra(AppConstant.LIST) != null) {
                 initializeComponents(LIST);
             }
             setValues(id);
@@ -283,7 +283,7 @@ public class NoteDetailActivity extends BaseActivity
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if(menuItem.getItemId() == R.id.action_device) {
-                            updateStorageSelection(null, R.drawable.ic_loading, AppConstant.DEVICE_SELECTION);
+                            updateStorageSelection(null, R.drawable.ic_local, AppConstant.DEVICE_SELECTION);
                         } else if(menuItem.getItemId() == R.id.action_google_drive) {
                             if(!AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext())) {
                                 startActivity(new Intent(NoteDetailActivity.this, GoogleDriveSelectionActivity.class));
@@ -293,7 +293,7 @@ public class NoteDetailActivity extends BaseActivity
                             }
                         } else if(menuItem.getItemId() == R.id.action_dropbox) {
                             AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);
-                            if(!AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext())) {
+                            if(!AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext())) {
                                 startActivity(new Intent(NoteDetailActivity.this, DropBoxPickerActivity.class));
                                 finish();
                             } else {

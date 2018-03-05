@@ -23,7 +23,7 @@ public class AppAuthenticationActivity extends BaseActivity {
         dropboxImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AppAuthenticationActivity.this, DBPickerActivity.class));
+                startActivity(new Intent(AppAuthenticationActivity.this, DropBoxPickerActivity.class));
                 finish();
             }
         });
@@ -32,7 +32,7 @@ public class AppAuthenticationActivity extends BaseActivity {
         googleDriveImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AppAuthenticationActivity.this, GDSelectionActivity.class));
+                startActivity(new Intent(AppAuthenticationActivity.this, GoogleDriveSelectionActivity.class));
                 finish();
             }
         });

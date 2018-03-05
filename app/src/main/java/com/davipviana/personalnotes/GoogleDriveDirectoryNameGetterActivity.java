@@ -58,6 +58,11 @@ public class GoogleDriveDirectoryNameGetterActivity extends BaseGoogleDriveActiv
             showMessage("An error occured while selected the folder.  Sync issue? Please try again");
             startActivity(new Intent(GoogleDriveDirectoryNameGetterActivity.this, GoogleDriveSelectionActivity.class));
             finish();
+        } catch(IllegalArgumentException e) {
+            showMessage("An error occured while selected the folder.  Sync issue? Please try again");
+            startActivity(new Intent(GoogleDriveDirectoryNameGetterActivity.this, GoogleDriveSelectionActivity.class));
+            finish();
+
         }
     }
 
