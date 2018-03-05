@@ -174,7 +174,7 @@ public class NoteCustomList extends LinearLayout {
             addView(this.listItem);
         }
     }
-    public void addNewCheckbox() {
+    public void addNewCheckBox() {
         this.listItem = new LinearLayout(context);
         this.listItem.setOrientation(HORIZONTAL);
         final ImageView deleteImageView = new ImageView(context);
